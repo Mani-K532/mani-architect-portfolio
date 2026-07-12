@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mani | Architect Portfolio</title>
+
+  <!-- Simple, clean font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --bg-alt: #ffffff;
+      --text: #222222;
+      --text-muted: #666666;
+      --accent: #01696f;
+      --accent-soft: #e0f0f1;
+      --border: #dddddd;
+      --radius: 8px;
+      --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+      --space-xs: 0.5rem;
+      --space-sm: 0.75rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --max-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 246, 242, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.8rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.18s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+      gap: var(--space-xl);
+      align-items: center;
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
+      margin-top: var(--space-sm);
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta {
+      margin-top: var(--space-md);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-block;
+      margin-right: var(--space-md);
+    }
+
+    .hero-actions {
+      margin-top: var(--space-lg);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background: #01494e;
+      border-color: #01494e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-soft);
+    }
+
+    .hero-summary-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-lg);
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .hero-summary-card h3 {
+      margin-bottom: var(--space-sm);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .hero-summary-card ul {
+      list-style: none;
+      margin-top: var(--space-sm);
+    }
+
+    .hero-summary-card li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* Sections */
+    section {
+      margin-top: var(--space-2xl);
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    section .section-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+    }
+
+    /* About */
+    .about-text {
+      max-width: 72ch;
+      font-size: 0.95rem;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .skill-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+      border: 1px solid var(--border);
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: var(--space-sm);
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* Experience */
+    .timeline {
+      border-left: 2px solid var(--border);
+      margin-top: var(--space-md);
+      padding-left: var(--space-md);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-lg);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      margin-top: var(--space-xs);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .project-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .project-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-xs);
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .project-links {
+      margin-top: var(--space-xs);
+      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    /* Certifications */
+    .cert-list {
+      list-style: none;
+      font-size: 0.9rem;
+      margin-top: var(--space-md);
+    }
+
+    .cert-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* CV download */
+    .cv-block {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .cv-block p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 40ch;
+    }
+
+    /* Contact */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+
+    .contact-details p {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-details strong {
+      display: inline-block;
+      width: 80px;
+    }
+
+    form {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    input, textarea {
+      padding: 0.55rem 0.7rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    footer {
+      margin-top: var(--space-2xl);
+      padding: var(--space-lg) var(--space-md);
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    // Smooth scroll for internal links
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Simple dummy submit handler for contact form
+      const form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          alert('Thank you for reaching out! I will get back to you shortly.');
+          form.reset();
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-mark">M</div>
+        <span>Mani · Architect Portfolio</span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div>
+        <h1 class="hero-title">Mani – QA / Test Automation Architect</h1>
+        <p class="hero-sub">
+          Architecting quality solutions and test automation frameworks for complex US healthcare and data platforms,
+          with a focus on QA leadership and AI‑driven testing.
+        </p>
+        <div class="hero-meta">
+          <span>Project: mani-architect-portfolio</span>
+          <span>Location: Chengalpattu / Chennai, Tamil Nadu, India</span>
+        </div>
+        <div class="hero-actions">
+          <!-- Replace resume.pdf with your real resume URL inside mani-architect-portfolio repo -->
+          <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener noreferrer">
+            View CV (PDF)
+          </a>
+          <a class="btn btn-outline" href="#contact">
+            Contact Me
+          </a>
+        </div>
+      </div>
+      <aside class="hero-summary-card">
+        <h3>Quick Highlights</h3>
+        <ul>
+          <li>Architected QA solutions for US healthcare claims and reporting landscapes.</li>
+          <li>Experience in Tosca, Selenium, SQL, HP ALM, and AI‑assisted test automation.</li>
+          <li>Built frameworks reducing manual effort for Power BI reports, dataflows, and UI test cases.</li>
+          <li>Preparing for QA leadership roles and exploring AI/chatbots for modern quality engineering.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About</h2>
+      <p class="section-sub">Who I am and what this architect portfolio represents.</p>
+      <p class="about-text">
+        This portfolio, <strong>mani-architect-portfolio</strong>, showcases my work in designing and implementing
+        QA and test automation architectures. I am a QA / Testing professional based in Chengalpattu, Tamil Nadu,
+        experienced in manual testing, leadership, and test automation for US healthcare projects. I focus on
+        claims workflow validation, risk‑based testing, and stakeholder communication, combined with modern automation and AI.[cite:4][cite:10]
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <p class="section-sub">Architecture, testing, tools, and domains.</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>QA Architecture</h3>
+          <p>Designing end‑to‑end QA strategies and automation frameworks.</p>
+          <div class="tags">
+            <span class="tag">Test Strategy</span>
+            <span class="tag">Framework Design</span>
+            <span class="tag">Risk-based Testing</span>
+            <span class="tag">Agile QA</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Tools & Tech</h3>
+          <p>Hands‑on with industry QA tools and automation stacks.[cite:2][cite:9]</p>
+          <div class="tags">
+            <span class="tag">Tosca Commander</span>
+            <span class="tag">Selenium</span>
+            <span class="tag">HP ALM</span>
+            <span class="tag">SQL / MySQL</span>
+            <span class="tag">Power BI Validation</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Domain & Data</h3>
+          <p>US healthcare claims and data‑centric testing.</p>
+          <div class="tags">
+            <span class="tag">US Healthcare Claims</span>
+            <span class="tag">Dataflow Testing</span>
+            <span class="tag">Regulatory Compliance</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Leadership & AI</h3>
+          <p>Mentoring QA teams and applying AI to testing workflows.[cite:10]</p>
+          <div class="tags">
+            <span class="tag">QA Team Management</span>
+            <span class="tag">Stakeholder Communication</span>
+            <span class="tag">AI in Testing</span>
+            <span class="tag">Chatbot QA Use Cases</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <p class="section-sub">Roles relevant to QA / test automation architecture.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-role">QA Lead / Architect – US Healthcare Claims</div>
+          <div class="timeline-meta">Project: mani-architect-portfolio · Chennai, India</div>
+          <p class="timeline-desc">
+            Leading QA design for complex healthcare claims workflows, including test planning, data validation,
+            and regression strategy. Responsible for defining architectures that align manual testing, automation
+            suites, and reporting to business needs.[cite:4]
+          </p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-role">Test Automation Engineer – Data & UI</div>
+          <div class="timeline-meta">Tosca · Selenium · Power BI · SQL</div>
+          <p class="timeline-desc">
+            Built and optimized automation frameworks for UI and Power BI landscapes, focusing on reusability,
+            maintainability, and measurable reductions in manual testing effort.[cite:2][cite:10]
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <p class="section-sub">
+        Architect‑level projects under the mani-architect-portfolio umbrella.
+      </p>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div>
+            <div class="project-title">AI‑Enabled Power BI QA Architecture</div>
+            <div class="project-meta">Part of mani-architect-portfolio · Tosca, Power BI, SQL, AI APIs</div>
+            <p class="project-desc">
+              Designed a QA architecture for validating Power BI reports and dataflows using Tosca automation,
+              SQL checks, and AI‑assisted test design. Achieved significant reductions in manual validation effort
+              and improved reliability of business reporting.[cite:10]
+            </p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div>
+            <div class="project-title">Healthcare Claims Workflow Test Suite</div>
+            <div class="project-meta">mani-architect-portfolio · Manual QA, SQL, Tosca</div>
+            <p class="project-desc">
+              Led the architecture and implementation of end‑to‑end test suites for healthcare claims, ensuring
+              coverage of eligibility, adjudication, and payment scenarios with strong traceability.[cite:4]
+            </p>
+          </div>
+        </article>
+
+        <!-- Add more architect-style projects here -->
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+      <h2>Certifications & Achievements</h2>
+      <p class="section-sub">
+        Highlights connected to mani-architect-portfolio.
+      </p>
+      <ul class="cert-list">
+        <li>• Tricentis – QA in the Age of AI competition, nomination for modern quality engineering.[cite:10]</li>
+        <li>• QA / Testing certifications (ISTQB, Agile, Tricentis/Tosca) – to be listed.</li>
+      </ul>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <h2>CV / Resume</h2>
+      <p class="section-sub">Downloadable CV associated with mani-architect-portfolio.</p>
+      <div class="cv-block">
+        <p>
+          This architect portfolio links to my latest CV with details about QA leadership, test automation design,
+          and AI‑driven quality engineering initiatives.
+        </p>
+        <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener noreferrer">
+          Download CV (PDF)
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="section-sub">Connect regarding QA / test automation architecture opportunities.</p>
+      <div class="contact-layout">
+        <div class="contact-details">
+          <p><strong>Email</strong> your.email@example.com</p>
+          <p><strong>Phone</strong> +91-XXXXXXXXXX</p>
+          <p><strong>Location</strong> Chengalpattu / Chennai, Tamil Nadu, India</p>
+          <p><strong>LinkedIn</strong> <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">linkedin.com/in/your-profile</a></p>
+          <p><strong>GitHub</strong> <a href="https://github.com/your-username/mani-architect-portfolio" target="_blank" rel="noopener noreferrer">github.com/your-username/mani-architect-portfolio</a></p>
+        </div>
+        <div>
+          <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Mani · QA / Test Automation Architect · mani-architect-portfolio hosted via GitHub Pages.[web:56][web:60]
+  </footer>
+</body>
+</html>
