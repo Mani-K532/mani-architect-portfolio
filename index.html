@@ -122,6 +122,31 @@
       padding: 0.8rem 1.5rem; border-radius: 100px; font-size: 0.95rem; font-weight: 500;
       cursor: pointer; transition: var(--transition); border: none;
     }
+      /* Success Popup (Toast) */
+    #toast {
+      visibility: hidden;
+      min-width: 280px;
+      background-color: var(--accent-primary);
+      color: #050505;
+      text-align: center;
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      box-shadow: 0 10px 30px var(--accent-glow);
+      opacity: 0;
+      transition: opacity 0.4s ease, bottom 0.4s ease;
+      font-weight: 600;
+    }
+
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+      bottom: 40px;
+    }
     .btn-primary { background: var(--text-main); color: #050505; }
     .btn-primary:hover { background: var(--accent-primary); transform: scale(1.02); }
     .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
@@ -186,11 +211,15 @@
         <h2 style="margin-bottom: 1rem;">Ready to collaborate?</h2>
         <p style="color: var(--text-muted); max-width: 500px; margin-bottom: 2rem;" id="ui-contact-note">Loading note...</p>
         
-        <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" style="width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 1rem;">
+        <!-- Functional Contact Form (Updated with ID) -->
+        <form id="contact-form" action="https://formspree.io/f/xqerzvlv" method="POST" style="width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 1rem;">
           <input type="email" name="email" id="ui-email-input" placeholder="Your Email Address" required style="width: 100%; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-main); font-family: inherit;">
           <textarea name="message" placeholder="How can we collaborate?" required rows="5" style="width: 100%; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-main); font-family: inherit; resize: vertical;"></textarea>
           <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Send Message</button>
         </form>
+
+        <!-- The Popup Message -->
+        <div id="toast">Message sent successfully!</div>
       </div>
     </div>
 
@@ -251,6 +280,53 @@
         });
       })
       .catch(error => console.error('Error loading data.json:', error));
+
+    // AJAX Form Submission
+    const contactForm = document.getElementById('contact-form');
+    const toast = document.getElementById('toast');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Stop the page from redirecting
+        
+        const data = new FormData(contactForm);
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        
+        // Optional: Change button text while sending
+        const originalBtnText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: data,
+            headers: {
+              'Accept': 'application/json' // Tells Formspree we want a JSON response, not a redirect
+            }
+          });
+
+          if (response.ok) {
+            // Form success
+            contactForm.reset();
+            toast.classList.add('show');
+            
+            // Hide popup after 5 seconds
+            setTimeout(() => {
+              toast.classList.remove('show');
+            }, 5000);
+          } else {
+            alert('Oops! There was a problem sending your message.');
+          }
+        } catch (error) {
+          alert('Oops! Something went wrong. Please check your internet connection.');
+        } finally {
+          // Reset button state
+          submitButton.textContent = originalBtnText;
+          submitButton.disabled = false;
+        }
+      });
+    }
   </script>
 </body>
 </html>
