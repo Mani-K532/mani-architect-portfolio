@@ -1,0 +1,39 @@
+{
+  "name": "Mani",
+  "title": "Quality Architect & Technical Lead",
+  "tagline": "Specializing in delivery management, sophisticated test automation strategies, and bridging the gap between traditional quality engineering and modern AI‑driven autonomous testing.",
+  "location": "Chennai, Tamil Nadu, IN",
+  "email": "your.email@example.com",
+  "about": "I am a QA / Testing professional experienced in manual testing, leadership, and test automation for US healthcare projects. I focus on claims workflow validation, risk‑based testing, and stakeholder communication, combined with modern automation and AI.",
+  "contactNote": "Currently exploring opportunities related to AI Agent development, test automation architecture, and technical leadership roles.",
+  "photoDataUrl": "profile.jpg",
+  "links": {
+    "github": "https://github.com/your-username",
+    "linkedin": "https://linkedin.com/in/your-profile",
+    "website": "https://yourusername.github.io"
+  },
+  "skills": ["TypeScript", "Playwright", "ISTQB GenAI", "GitHub Copilot", "Tosca", "Windows Registry"],
+  "projects": [
+    {
+      "title": "Playwright MCP Evidence Utility",
+      "category": "Tooling",
+      "description": "Designing a lightweight evidence-creation tool utilizing an MCP server and Playwright to empower manual testers with auto-annotated screenshots via global hotkeys.",
+      "link": "#",
+      "tags": ["Playwright", "MCP Server", "TypeScript"]
+    },
+    {
+      "title": "Airlock Autologon PoC",
+      "category": "Architecture",
+      "description": "Developed a PoC for Windows environment automation utilizing Autologon and Task Scheduler to simulate 'Switch User' functionality for unblocking headless execution.",
+      "link": "#",
+      "tags": ["Windows Registry", "Task Scheduler", "Autologon"]
+    },
+    {
+      "title": "AI-Assisted Delivery Management",
+      "category": "Management",
+      "description": "Executing delivery management for automation projects while integrating Generative AI workflows to accelerate developer output using GitHub Copilot.",
+      "link": "#",
+      "tags": ["Delivery Mgmt", "GenAI", "System Architecture"]
+    }
+  ]
+}
